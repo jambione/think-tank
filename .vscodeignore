@@ -5,3 +5,4 @@ out/maps/**
 **/*.map
 tsconfig.json
 .gitignore
+sessions/**

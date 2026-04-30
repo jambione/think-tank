@@ -1,6 +1,6 @@
 # Think Tank
 
-A VS Code extension that adds three Copilot Chat participants. Obi-Wan orchestrates Luke (GPT-4.1) and Han (Claude Haiku 4.5) to build the sharpest possible questions for any topic, then synthesizes your answers into a well-reasoned conclusion.
+A VS Code extension that adds three Copilot Chat participants. Obi-Wan orchestrates Luke (GPT-4.1) and Han (Claude Haiku 4.5) to build the sharpest possible questions for any topic, then synthesizes your answers into a well-reasoned conclusion — saved to disk automatically.
 
 ## Agents
 
@@ -35,7 +35,7 @@ Open Copilot Chat and start with `@obi-wan`:
 @obi-wan  What should our team prioritize this quarter?
 ```
 
-Obi-Wan assembles Luke and Han, shows their collaboration, then presents **3 synthesized questions**. Answer each one in a follow-up message. After the third answer, Obi-Wan delivers a conclusion with actionable recommendations.
+Obi-Wan assembles Luke and Han, shows their collaboration, then presents a set of synthesized questions scaled to the topic's depth (2–5). Answer each one in a follow-up message. After the final answer, Obi-Wan delivers a conclusion and saves the full session to `sessions/`.
 
 You can also talk to Luke or Han directly:
 
@@ -46,7 +46,11 @@ You can also talk to Luke or Han directly:
 
 ## Knowledge Base
 
-Drop `.md` or `.txt` files into `knowledge/`. Both Luke and Han will read them before drafting questions. Leave the folder empty to start from scratch.
+Drop `.md` or `.txt` files into `knowledge/`. Luke and Han read them before drafting questions and will cite relevant files inline — e.g. *(from context.md)* — so you can see what's driving their thinking.
+
+## Sessions
+
+Each completed session is saved to `sessions/YYYY-MM-DD-topic-slug.md` with the topic, questions, your answers, and Obi-Wan's conclusion. Drop past sessions into `knowledge/` to let future sessions build on previous ones.
 
 ## Session Flow
 
@@ -55,10 +59,12 @@ Drop `.md` or `.txt` files into `knowledge/`. Both Luke and Han will read them b
   → Luke drafts questions (GPT-4.1)
   → Han drafts questions (Claude Haiku 4.5)
   → Luke + Han refine in parallel
-  → Obi-Wan synthesizes 3 final questions
+  → Obi-Wan decides question count (2–5) and synthesizes
 
 @obi-wan [answer to Q1]
 @obi-wan [answer to Q2]
-@obi-wan [answer to Q3]
+  ...
+@obi-wan [answer to final Q]
   → Obi-Wan concludes with recommendations
+  → Session saved to sessions/
 ```
