@@ -13,9 +13,9 @@ from pathlib import Path
 from openai import OpenAI
 
 ENDPOINT = "https://models.inference.ai.azure.com"
-LUKE_MODEL = "gpt-4o-mini"          # free GPT model via GitHub Models
-HAN_MODEL = "claude-3-5-haiku"      # free Anthropic model via GitHub Models
-OBI_MODEL = "gpt-4o-mini"           # orchestrator
+LUKE_MODEL = "gpt-4.1"              # free GPT model via GitHub Models
+HAN_MODEL = "claude-haiku-4-5"      # free Anthropic model via GitHub Models
+OBI_MODEL = "gpt-4.1"               # orchestrator
 
 ROOT = Path(__file__).parent
 AGENTS_DIR = ROOT / "agents"

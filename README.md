@@ -6,9 +6,9 @@ A lightweight multi-agent reasoning session. Obi-Wan orchestrates Luke (GPT) and
 
 | Agent | Model | Role |
 |-------|-------|------|
-| **Luke** (`agents/luke.md`) | `gpt-4o-mini` | Seeks the truth — optimistic, probing, fearless |
-| **Han** (`agents/han.md`) | `claude-3-5-haiku` | Grounds the thinking — pragmatic, sharp, no-nonsense |
-| **Obi-Wan** (`agents/obi-wan.md`) | `gpt-4o-mini` | Synthesizes Luke and Han into the best questions, then builds the conclusion |
+| **Luke** (`agents/luke.md`) | `gpt-4.1` | Seeks the truth — optimistic, probing, fearless |
+| **Han** (`agents/han.md`) | `claude-haiku-4-5` | Grounds the thinking — pragmatic, sharp, no-nonsense |
+| **Obi-Wan** (`agents/obi-wan.md`) | `gpt-4.1` | Synthesizes Luke and Han into the best questions, then builds the conclusion |
 
 Models are the free tier via [GitHub Models](https://github.com/marketplace/models). Check the catalog for exact model IDs if names change.
 
