@@ -1,38 +1,64 @@
 # Think Tank
 
-A lightweight multi-agent reasoning session. Obi-Wan orchestrates Luke (GPT) and Han (Anthropic) to build the sharpest possible questions for any topic, collect your answers, and synthesize a well-reasoned conclusion.
+A VS Code extension that adds three Copilot Chat participants. Obi-Wan orchestrates Luke (GPT-4.1) and Han (Claude Haiku 4.5) to build the sharpest possible questions for any topic, then synthesizes your answers into a well-reasoned conclusion.
 
 ## Agents
 
-| Agent | Model | Role |
-|-------|-------|------|
-| **Luke** (`agents/luke.md`) | `gpt-4.1` | Seeks the truth — optimistic, probing, fearless |
-| **Han** (`agents/han.md`) | `claude-haiku-4-5` | Grounds the thinking — pragmatic, sharp, no-nonsense |
-| **Obi-Wan** (`agents/obi-wan.md`) | `gpt-4.1` | Synthesizes Luke and Han into the best questions, then builds the conclusion |
+| Participant | Model | Role |
+|-------------|-------|------|
+| `@obi-wan` | GPT-4.1 | Orchestrator — runs the full session |
+| `@luke` | GPT-4.1 | The seeker — optimistic, probing, fearless |
+| `@han` | Claude Haiku 4.5 | The realist — pragmatic, sharp, no-nonsense |
 
-Models are the free tier via [GitHub Models](https://github.com/marketplace/models). Check the catalog for exact model IDs if names change.
+Agent personalities live in `agents/*.md`. Edit them freely — the file becomes the system prompt.
 
 ## Setup
 
 ```bash
-pip install -r requirements.txt
-export GITHUB_TOKEN=your_token_here   # needs GitHub Models access
-python think_tank.py
+npm install
+npm run compile
 ```
 
-## Session Flow
+Then press `F5` in VS Code to launch the Extension Development Host, or package it:
 
-1. You enter a topic
-2. Luke and Han each draft questions independently
-3. They review each other's drafts and propose a refined set
-4. Obi-Wan synthesizes the 3 most powerful questions and presents them to you
-5. You answer each one
-6. Obi-Wan builds a conclusion with actionable recommendations
+```bash
+npm run package   # produces think-tank-0.1.0.vsix
+```
+
+Install the VSIX via **Extensions → Install from VSIX**.
+
+## Usage
+
+Open Copilot Chat and start with `@obi-wan`:
+
+```
+@obi-wan  What should our team prioritize this quarter?
+```
+
+Obi-Wan assembles Luke and Han, shows their collaboration, then presents **3 synthesized questions**. Answer each one in a follow-up message. After the third answer, Obi-Wan delivers a conclusion with actionable recommendations.
+
+You can also talk to Luke or Han directly:
+
+```
+@luke  What assumptions are we making about our users?
+@han   What's the cheapest path to validating this idea?
+```
 
 ## Knowledge Base
 
-Drop any `.md` or `.txt` files into `knowledge/`. Luke and Han will read them before drafting questions. Leave the folder empty to start from scratch.
+Drop `.md` or `.txt` files into `knowledge/`. Both Luke and Han will read them before drafting questions. Leave the folder empty to start from scratch.
 
-## Customizing Personalities
+## Session Flow
 
-Each agent is just a markdown file in `agents/`. Edit freely — the file becomes the system prompt.
+```
+@obi-wan [topic]
+  → Luke drafts questions (GPT-4.1)
+  → Han drafts questions (Claude Haiku 4.5)
+  → Luke + Han refine in parallel
+  → Obi-Wan synthesizes 3 final questions
+
+@obi-wan [answer to Q1]
+@obi-wan [answer to Q2]
+@obi-wan [answer to Q3]
+  → Obi-Wan concludes with recommendations
+```

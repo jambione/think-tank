@@ -1,0 +1,46 @@
+{
+  "name": "think-tank",
+  "displayName": "Think Tank",
+  "description": "Obi-Wan orchestrates Luke (GPT-4.1) and Han (Claude Haiku 4.5) to explore any topic deeply.",
+  "version": "0.1.0",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["AI"],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "think-tank.obi-wan",
+        "name": "obi-wan",
+        "fullName": "Obi-Wan Kenobi",
+        "description": "The Think Tank orchestrator — give him a topic to begin",
+        "isSticky": true
+      },
+      {
+        "id": "think-tank.luke",
+        "name": "luke",
+        "fullName": "Luke Skywalker",
+        "description": "The seeker — powered by GPT-4.1",
+        "isSticky": false
+      },
+      {
+        "id": "think-tank.han",
+        "name": "han",
+        "fullName": "Han Solo",
+        "description": "The realist — powered by Claude Haiku 4.5",
+        "isSticky": false
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.0.0"
+  }
+}
